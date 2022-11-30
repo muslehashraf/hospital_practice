@@ -24,7 +24,7 @@ public class Doctor {
     public String speciality;
     public boolean isAvailable;
 
-    public static Doctor getDoctor(String problem){
+    public static Doctor getDoctor(String problem) {
         problem = problem.toLowerCase();
 
         // 6 first names -> size = 6 -> max index = 5, startIndex = 0
@@ -44,7 +44,7 @@ public class Doctor {
         other -> "PCP"
          */
         String speciality = "";
-        if (problem.contains("emergency") || problem.contains("life") || problem.contains("threat") ) speciality = "ER";
+        if (problem.contains("emergency") || problem.contains("life") || problem.contains("threat")) speciality = "ER";
         else if (problem.contains("heart")) speciality = "Cardiologist";
         else if (problem.contains("ear") || problem.contains("throat") || problem.contains("nose")) speciality = "ENT";
         else if (problem.contains("eye") || problem.contains("see")) speciality = "Ophthalmologist";

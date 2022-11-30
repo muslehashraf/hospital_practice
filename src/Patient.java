@@ -24,6 +24,11 @@ public class Patient {
 
     public static Patient createPatient() {
         String problem = ScannerHelper.getString(askProblem);
+        if (problem.contains("emergency") || problem.contains("life") || problem.contains("threat")){
+            System.out.println(QuestionsAndMessages.emergencyMessage);
+            return new Patient(problem, "ER patient", "N/A", "N/A", false);
+        }
+
         String firstName = ScannerHelper.getString(askFirstName);
         String lastName = ScannerHelper.getString(askLastName);
         String dateOfBirth = ScannerHelper.getString(askDateOfBirth);
@@ -31,6 +36,7 @@ public class Patient {
             dateOfBirth = ScannerHelper.getString(askDateOfBirthAgain);
         }
         boolean hasInsurance = ScannerHelper.getString(askInsurance).toUpperCase().startsWith("Y");
+        if (!hasInsurance) System.out.println(QuestionsAndMessages.noInsuranceMessage);
 
         return new Patient(problem, firstName, lastName, dateOfBirth, hasInsurance);
     }
