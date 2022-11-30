@@ -27,7 +27,7 @@ public class Patient {
         String firstName = ScannerHelper.getString(askFirstName);
         String lastName = ScannerHelper.getString(askLastName);
         String dateOfBirth = ScannerHelper.getString(askDateOfBirth);
-        while (!isDateOfBirthValid(dateOfBirth)){
+        while (!isDateOfBirthValid(dateOfBirth)) {
             dateOfBirth = ScannerHelper.getString(askDateOfBirthAgain);
         }
         boolean hasInsurance = ScannerHelper.getString(askInsurance).toUpperCase().startsWith("Y");
@@ -83,12 +83,19 @@ public class Patient {
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", hasInsurance=" + hasInsurance +
-                ", patientDoctor=" + patientDoctor +
+                ", patientDoctor='" +
+                (patientDoctor == null ? "You have no doctor available!" : patientDoctor.firstName + " " + patientDoctor.lastName) + '\'' +
                 '}';
     }
 
     public static void main(String[] args) {
-        System.out.println(createPatient());
+        Patient patient = createPatient();
+
+        System.out.println(patient);
+
+        patient.patientDoctor = Doctor.getDoctor(patient.problem);
+        System.out.println(patient);
+        System.out.println(patient.patientDoctor);
     }
 
 }
